@@ -1,0 +1,108 @@
+1、History of unix
+	1)
+	2) hardware --> kernel space  -->  user space
+	3) linux kernel version
+		1> two flavors: stable and development
+		2> 2.6.26.1  ---->  2 the major version 
+							6 the minor version(an even number is stable, an odd number is development) 
+							26 the revision  
+							1 the stable version
+
+		3> view the kernel of linux: uname -a;  uname -r;  cat /proc/version
+
+	4) The linux kernel development community
+		1) http://vger.kernel.org
+
+2、Getting started with the kernel
+	1) Obtaining the kernel source
+		1> http://www.kernel.org
+		2> git
+			git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+
+	2) Installing the kernel source
+		1> tar -zxvf linux-x-y-z.tar.gz;  or  tar -xvjf linux-x-y-z.tar.bz2;
+		2> cd /usr/src; the kernel of source.
+
+	3) The kernel source tree
+		1>  dir:
+			arch             	--> architecture-specific source
+			block	            --> block I/O layer
+			crypto          	--> crypto api
+			documentation 		--> kernel source documentation
+			drivers         	--> device drivers
+			firmware        	--> device firmware needed to use certain drivers
+			fs 	                --> The VFS and the individual filesystems
+			include 	        --> kernel headers
+			init 	            --> kernel boot and initialization
+			ipc             	--> interprocess communnication code
+			kernel          	--> core subsystems, such as the scheduler
+			lib             	--> helper routines
+			mm 	                --> memory management subsystem and the vm
+			net                 --> networking subsystem
+			samples             --> sample, demonstrative code
+			scripts             --> scripts used to build kernel
+			security            --> linux security module
+			sound               --> sound subsystem
+			usr                 --> early user-space code (called initramfs)
+			tools               --> tools helpful for developing linux
+			virt                --> virtualization infrastructure
+
+	4) building the kernel
+		1> glibc
+	
+	5) configuring the kernel:
+		1> 
+	
+	6) GUN C
+		
+	7) inline functions
+
+	8) inline assembly
+	
+	9) no memory protection
+
+
+3、Process Management
+	1)	fork()  exit()  wait()  waitpid()
+	2)  thread_info.h :  arch/x86/include/asm/thread_info.f
+	3)  If the system is willing to break compatibility with old applications, the administrator may increase the maximum value via
+		/proc/sys/kernel/pid_max
+	4) process state
+		1> five different states
+			task_running(running)
+			task_interruptible(sleeping)
+			task_uninterruptible
+			task_traced
+			task_stopped
+	5) manipulating the current process state
+		set_task_state(task, state);   <linux/sched.h>
+	
+	6) The process family tree
+		1>  all processes are descendants of the init process, whose pid is one.
+		2>  struct task_struct  *my_parent = current -> parent;
+
+	7) process creation
+		fock()  exec()
+	8) copy-on-write
+	
+	9) forking
+		copy_process(): <kernel/fork.c>
+		dup_task_struct() , which createa new kernel stack
+
+	10) vfork()
+
+4、the linux implementation of threads
+	1) creating threads
+		clone() <linux/include/sched.h>
+	
+	2) kernel threads
+		<linux/kthread.h>
+	
+	3) process termination
+		<linux/exit.c>
+	
+	4) removing the process descriptor
+
+	5) the dilemma of the parentless task
+
+5、process scheduling
